@@ -1,12 +1,19 @@
 ---
-- hosts: ubuntu
-
-  tasks: 
-  - name: Eine Test Ausgabe
-    ansible.builtin.debug:
-      msg: "Hallo Ansible!!!"
-
-  - name: Den SSH-Dienst starten 
-    ansible.builtin.service:
-      state: started
-      name: sshd
+- name: Ansible Test
+  hosts: ubuntu
+  tasks:
+    - name: Eine Test Ausgabe
+      ansible.builtin.debug:
+        msg: Hallo Ansible!!!
+    - name: Den SSH-Dienst starten
+      ansible.builtin.service:
+        state: started
+        name: sshd
+    - name: Auslastung Root FS bestimmen
+      ansible.builtin.command: df -h /
+      register: df_cmd
+      changed_when: false
+    - name: Paketlisten aktualisieren
+      ansible.builtin.apt:
+        update_cache: "yes"
+        cache_valid_time: 3600

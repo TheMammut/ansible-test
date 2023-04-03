@@ -1,0 +1,11 @@
+[test_hosts]
+ubuntu
+
+[test_hosts:vars]
+ansible_python_interpreter=/usr/bin/python3
+ansible_ssh_common_args='-o StrictHostKeyChecking=no'
+
+[test_hosts:vars]
+ansible_user=ansible
+ansible_become=yes
+ansible_become_pass=ansible

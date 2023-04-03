@@ -1,0 +1,12 @@
+---
+- hosts: ubuntu
+
+  tasks: 
+  - name: Eine Test Ausgabe
+    ansible.builtin.debug:
+      msg: "Hallo Ansible!!!"
+
+  - name: Den SSH-Dienst starten 
+    ansible.builtin.service:
+      state: started
+      name: sshd
